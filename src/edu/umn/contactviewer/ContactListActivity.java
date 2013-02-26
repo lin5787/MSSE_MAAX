@@ -26,7 +26,6 @@ public class ContactListActivity extends ListActivity {
 	    Button button = toolbar.getToolbarRightButton();
 	    button.setText("About");
 		button.setOnClickListener(new View.OnClickListener() {
-			@Override
 			public void onClick(View view) {
 				Toast.makeText(ContactListActivity.this, "This is a sample application made for SENG 5199-1 in the MSSE program.", Toast.LENGTH_LONG).show();
 			}
