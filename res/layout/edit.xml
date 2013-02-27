@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/toolbar"
+        android:layout_weight="0"/>
+    
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/TableLayout2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
+	
+	    <TableRow
+	        android:id="@+id/tableRow6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	
+	        <TextView
+	            android:id="@+id/editCaption_name"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Name"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <EditText
+	            android:id="@+id/edit_name"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="name"
+	            android:textColor="@color/border" />
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <TextView
+	            android:id="@+id/editCaption_phone"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Phone"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <EditText
+	            android:id="@+id/edit_phone"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="email"
+	            android:textColor="@color/border" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow8"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/editCaption_title"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Title"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <EditText
+	            android:id="@+id/edit_title"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="title"
+	            android:textColor="@color/border" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow9"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/editCaption_email"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Email"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <EditText
+	            android:id="@+id/edit_email"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="email"
+	            android:textColor="@color/border" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow10"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/editCaption_twitterId"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Twitter ID" 
+	            android:textColor="@color/toolbar_start"/>
+	
+	        <EditText
+	            android:id="@+id/edit_twitterId"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="twitterId"
+	            android:textColor="@color/border" />
+	
+	    </TableRow>
+	</TableLayout>
+</LinearLayout>

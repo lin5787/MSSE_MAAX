@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/toolbar"
+        android:layout_weight="0"/>
+    
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/TableLayout1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
+	
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	
+	        <TextView
+	            android:id="@+id/detailsCaption_name"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Name"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <TextView
+	            android:id="@+id/details_name"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="name"
+	            android:textColor="@color/tool_text_color" />
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <TextView
+	            android:id="@+id/detailsCaption_phone"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Phone"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <TextView
+	            android:id="@+id/details_phone"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="email"
+	            android:textColor="@color/tool_text_color" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/detailsCaption_title"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Title"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <TextView
+	            android:id="@+id/details_title"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="title"
+	            android:textColor="@color/tool_text_color" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/detailsCaption_email"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Email"
+	            android:textColor="@color/toolbar_start" />
+	
+	        <TextView
+	            android:id="@+id/details_email"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="email"
+	            android:textColor="@color/tool_text_color" />
+	
+	    </TableRow>
+	
+	    <TableRow
+	        android:id="@+id/tableRow5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView
+	            android:id="@+id/detailsCaption_twitterId"
+	            android:layout_width="0px"
+	            android:layout_weight="0.3"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="Twitter ID" 
+	            android:textColor="@color/toolbar_start"/>
+	
+	        <TextView
+	            android:id="@+id/details_twitterId"
+	            android:layout_width="0px"
+	            android:layout_weight="0.7"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:text="twitterId"
+	            android:textColor="@color/tool_text_color" />
+	
+	    </TableRow>
+	</TableLayout>
+</LinearLayout>
