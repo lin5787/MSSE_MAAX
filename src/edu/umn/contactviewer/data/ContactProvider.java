@@ -5,8 +5,10 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.text.TextUtils;
 
 public class ContactProvider extends ContentProvider {
 	private ContactViewerDatabase cDB;
@@ -30,35 +32,16 @@ public class ContactProvider extends ContentProvider {
     }
 
 	@Override
-	public int delete(Uri arg0, String arg1, String[] arg2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-    public String getType(Uri uri) {
-        int uriType = sURIMatcher.match(uri);
-        switch (uriType) {
-        case CONTACT:
-            return CONTENT_TYPE;
-        case CONTACT_ID:
-            return CONTENT_ITEM_TYPE;
-        default:
-            return null;
-        }
-    }
-
-	@Override
-	public Uri insert(Uri arg0, ContentValues arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean onCreate() {
-		// TODO Auto-generated method stub
-		cDB = new ContactViewerDatabase(getContext());
-        return true;
+	public String getType(Uri uri) {
+	    int uriType = sURIMatcher.match(uri);
+	    switch (uriType) {
+	    case CONTACT:
+	        return CONTENT_TYPE;
+	    case CONTACT_ID:
+	        return CONTENT_ITEM_TYPE;
+	    default:
+	        return null;
+	    }
 	}
 
 	@Override
@@ -85,9 +68,54 @@ public class ContactProvider extends ContentProvider {
 	}
 
 	@Override
-	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+	public int delete(Uri arg0, String arg1, String[] arg2) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Uri insert(Uri arg0, ContentValues arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean onCreate() {
+		// TODO Auto-generated method stub
+		cDB = new ContactViewerDatabase(getContext());
+        return true;
+	}
+
+	@Override
+    public int update(Uri uri, ContentValues values, String selection,
+            String[] selectionArgs) {
+        int uriType = sURIMatcher.match(uri);
+        SQLiteDatabase sqlDB = cDB.getWritableDatabase();
+
+        int rowsAffected;
+
+        switch (uriType) {
+        case CONTACT_ID:
+            String id = uri.getLastPathSegment();
+            StringBuilder modSelection = new StringBuilder(ContactViewerDatabase.ID
+                    + "=" + id);
+
+            if (!TextUtils.isEmpty(selection)) {
+                modSelection.append(" AND " + selection);
+            }
+
+            rowsAffected = sqlDB.update(ContactViewerDatabase.TABLE_CONTACT,
+                    values, modSelection.toString(), null);
+            break;
+        case CONTACT:
+            rowsAffected = sqlDB.update(ContactViewerDatabase.TABLE_CONTACT,
+                    values, selection, selectionArgs);
+            break;
+        default:
+            throw new IllegalArgumentException("Unknown URI");
+        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return rowsAffected;
+    }
 
 }

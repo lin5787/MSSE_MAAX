@@ -22,11 +22,12 @@ public class DetailsActivity extends Activity {
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(getApplicationContext(), EditActivity.class);
+					intent.putExtra("contactId", getIntent().getStringExtra("contactId"));
 			    	intent.putExtra("name", getIntent().getStringExtra("name"));
 			    	intent.putExtra("email", getIntent().getStringExtra("email"));
 			    	intent.putExtra("title", getIntent().getStringExtra("title"));
 			    	intent.putExtra("phone", getIntent().getStringExtra("phone"));
-			    	intent.putExtra("twitterId", getIntent().getStringExtra("name"));
+			    	intent.putExtra("twitterId", getIntent().getStringExtra("twitterId"));
 			    	startActivity(intent);
 				}
 			});

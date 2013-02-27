@@ -56,7 +56,7 @@
 	            android:layout_weight="0.7"
 	            android:layout_height="wrap_content"
 	            android:padding="8dp"
-	            android:text="email"
+	            android:text="phone"
 	            android:textColor="@color/border" />
 	
 	    </TableRow>

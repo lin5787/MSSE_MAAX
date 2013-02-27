@@ -62,23 +62,25 @@ public class ContactListActivity extends ListActivity {
 					//"Clicked: " + ((ContactAdapter)getListAdapter()).getItem(position).getName(),
 					//Toast.LENGTH_SHORT).show();
         		
-        		String projection[] = { ContactViewerDatabase.COL_NAME,  ContactViewerDatabase.COL_PHONE, ContactViewerDatabase.COL_TITLE, ContactViewerDatabase.COL_EMAIL, ContactViewerDatabase.COL_TWITTERID};
+        		String projection[] = { ContactViewerDatabase.ID, ContactViewerDatabase.COL_NAME,  ContactViewerDatabase.COL_PHONE, ContactViewerDatabase.COL_TITLE, ContactViewerDatabase.COL_EMAIL, ContactViewerDatabase.COL_TWITTERID};
         	    Cursor contactCursor = getContentResolver().query(
         	            Uri.withAppendedPath(ContactProvider.CONTENT_URI,
         	                    String.valueOf(id)), projection, null, null, null);
         	    if (contactCursor.moveToFirst()) {
 						Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
 						
-						String name = contactCursor.getString(0);
-						String email = contactCursor.getString(1);
-						String title = contactCursor.getString(2);
-						String phone = contactCursor.getString(3);
-						String twitterId = contactCursor.getString(4);
+						String contactId = contactCursor.getString(0);
+						String name = contactCursor.getString(1);
+						String phone = contactCursor.getString(2);
+						String title = contactCursor.getString(3);
+						String email = contactCursor.getString(4);
+						String twitterId = contactCursor.getString(5);
 						
-				    	intent.putExtra("name", name);
-				    	intent.putExtra("email", email);
-				    	intent.putExtra("title", title);
+						intent.putExtra("contactId", contactId);
+						intent.putExtra("name", name);
 				    	intent.putExtra("phone", phone);
+				    	intent.putExtra("title", title);
+				    	intent.putExtra("email", email);
 				    	intent.putExtra("twitterId", twitterId);
 				    	startActivity(intent);
         	    	}
