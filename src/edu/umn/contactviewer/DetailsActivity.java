@@ -28,7 +28,7 @@ public class DetailsActivity extends Activity {
 			    	intent.putExtra("title", getIntent().getStringExtra("title"));
 			    	intent.putExtra("phone", getIntent().getStringExtra("phone"));
 			    	intent.putExtra("twitterId", getIntent().getStringExtra("twitterId"));
-			    	startActivity(intent);
+			    	startActivityForResult(intent, 0);
 				}
 			});
 		
@@ -52,4 +52,37 @@ public class DetailsActivity extends Activity {
 		String twitterId = getIntent().getStringExtra("twitterId");
 		textViewTwitterId.setText(twitterId);
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+            	TextView textViewName = (TextView) findViewById(R.id.details_name);
+        		String name = data.getStringExtra("name");
+        		textViewName.setText(name);
+        		getIntent().putExtra("name", name);
+        		
+        		TextView textViewPhone = (TextView) findViewById(R.id.details_phone);
+        		String phone = data.getStringExtra("phone");
+        		textViewPhone.setText(phone);
+        		getIntent().putExtra("phone", phone);
+        		
+        		TextView textViewTitle = (TextView) findViewById(R.id.details_title);
+        		String title = data.getStringExtra("title");
+        		textViewTitle.setText(title);
+        		getIntent().putExtra("title", title);
+        		
+        		TextView textViewEmail = (TextView) findViewById(R.id.details_email);
+        		String email = data.getStringExtra("email");
+        		textViewEmail.setText(email);
+        		getIntent().putExtra("email", email);
+        		
+        		TextView textViewTwitterId = (TextView) findViewById(R.id.details_twitterId);
+        		String twitterId = data.getStringExtra("twitterId");
+        		textViewTwitterId.setText(twitterId);
+        		getIntent().putExtra("twitterId", twitterId);
+            }
+        }
+    }
 }

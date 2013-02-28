@@ -1,8 +1,11 @@
 package edu.umn.contactviewer;
 
 import android.app.ListActivity;
+import android.app.LoaderManager;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +25,10 @@ import edu.umn.contactviewer.data.ContactViewerDatabase;
 /** Displays a list of contacts.
  *
  */
-public class ContactListActivity extends ListActivity {
+public class ContactListActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+	
+	private static final int CONTACT_LIST_LOADER = 0x01;
+	private SimpleCursorAdapter adapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,14 +46,17 @@ public class ContactListActivity extends ListActivity {
 			}
 		});
         
-		String[] projection = { ContactViewerDatabase.ID, ContactViewerDatabase.COL_NAME, ContactViewerDatabase.COL_PHONE, ContactViewerDatabase.COL_TITLE};
 	    String[] uiBindFrom = { ContactViewerDatabase.COL_NAME, ContactViewerDatabase.COL_PHONE, ContactViewerDatabase.COL_TITLE};
 	    int[] uiBindTo = { R.id.item_name, R.id.item_phone, R.id.item_title };
 	    
-	    Cursor contacts = managedQuery(
-	            ContactProvider.CONTENT_URI, projection, null, null, null);
-	    CursorAdapter adapter = new ContactAdapter(getApplicationContext(), R.layout.list_item, contacts,
-	            uiBindFrom, uiBindTo);
+	    getLoaderManager().initLoader(CONTACT_LIST_LOADER, null, this);
+	    
+	    adapter = new ContactAdapter(
+	            getApplicationContext(), R.layout.list_item,
+	            null, uiBindFrom, uiBindTo,
+	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+	    setListAdapter(adapter);
+	    
         
 	    // initialize the list view
 	    setListAdapter(adapter);
@@ -91,13 +100,31 @@ public class ContactListActivity extends ListActivity {
         
     }
     
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		String[] projection = { ContactViewerDatabase.ID, ContactViewerDatabase.COL_NAME, ContactViewerDatabase.COL_PHONE, ContactViewerDatabase.COL_TITLE};
+	    CursorLoader cursorLoader = new CursorLoader(this,
+	            ContactProvider.CONTENT_URI, projection, null, null, null);
+	    return cursorLoader;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	    adapter.swapCursor(cursor);
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+	    adapter.swapCursor(null);
+	}
+
 	/* We need to provide a custom adapter in order to use a custom list item view.
 	 */
 	public class ContactAdapter extends SimpleCursorAdapter {
 	
-		public ContactAdapter(Context context, int layout, Cursor c, String[] from, int[] to)
+		public ContactAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags)
 		{
-			super(context, layout, c, from, to);
+			super(context, layout, c, from, to, flags);
 		}
 	
 		@Override
